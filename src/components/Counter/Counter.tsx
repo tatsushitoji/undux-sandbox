@@ -12,18 +12,18 @@ interface IHandlers {
   decrement: React.MouseEventHandler<HTMLButtonElement>;
 }
 
-type OuterProps = IProps & IStore & IHandlers;
+type InjectedProps = IProps & IStore & IHandlers;
 
-type AddedProps = IProps & IHandlers & ICounterState;
+type EnhancedProps = IProps & IHandlers & ICounterState;
 
 // connector & enhancer
-const CounterProvider = compose<IProps, {}>(
+const CounterProvider = compose<EnhancedProps, IProps>(
   withStore,
   withHandlers<IStore, IHandlers>({
     increment: ({ store }) => () => store.set('count')(store.get('count') + 1),
     decrement: ({ store }) => () => store.set('count')(store.get('count') - 1),
   }),
-  mapProps<IProps, OuterProps>(({ text, store, increment, decrement }) => ({
+  mapProps<IProps, InjectedProps>(({ text, store, increment, decrement }) => ({
     text,
     increment,
     decrement,
@@ -31,14 +31,14 @@ const CounterProvider = compose<IProps, {}>(
   })),
 );
 
-const CounterComponent: React.SFC<AddedProps> = ({
+const CounterComponent: React.SFC<EnhancedProps> = ({
   text,
   count,
   increment,
   decrement,
 }) => (
   <div>
-    <div>
+    <div className="counter">
       {text}
       {count}
     </div>

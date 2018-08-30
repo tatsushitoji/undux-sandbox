@@ -5,7 +5,7 @@ import { Counter } from './components/Counter';
 
 const renderApp = () =>
   render(
-    <Counter />,
+    <Counter text="Counter" />,
     document.body && document.body.appendChild(document.createElement('div')),
   );
 
