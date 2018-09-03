@@ -17,7 +17,7 @@
     "recompose": "^0.28.2",
     "rxjs": "^6.2.2",
     "source-map-loader": "^0.2.3",
-    "undux": "^4.8.0"
+    "undux": "^5.0.0-alpha.14"
   },
   "devDependencies": {
     "@babel/cli": "^7.0.0",

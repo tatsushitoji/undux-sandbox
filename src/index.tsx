@@ -1,11 +1,11 @@
 import * as React from 'react';
 import { render } from 'react-dom';
 
-import { Counter } from './components/Counter';
+import { CounterContainer } from './container/counter';
 
 const renderApp = () =>
   render(
-    <Counter text="Counter" />,
+    <CounterContainer />,
     document.body && document.body.appendChild(document.createElement('div')),
   );
 

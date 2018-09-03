@@ -1,10 +1,10 @@
-import { connect, createStore, withReduxDevtools } from 'undux';
-import { initialCounterState } from './modules/counter';
+import { createConnectedStore, withReduxDevtools, Store } from 'undux';
+import { ICounterState, initialCounterState } from './modules/counter';
 
-export const store = withReduxDevtools(createStore({ ...initialCounterState }));
-
-export const withStore = connect(store);
+export default createConnectedStore<ICounterState>({
+  ...initialCounterState,
+});
 
 export interface IStore {
-  store: typeof store;
+  store: Store<ICounterState>;
 }

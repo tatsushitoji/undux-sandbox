@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { compose, withHandlers, mapProps } from 'recompose';
-import { IStore, withStore } from '../../store';
+import store, { IStore } from '../../store';
 import { ICounterState } from '../../modules/counter';
 
 interface IProps {
@@ -18,7 +18,7 @@ type EnhancedProps = IProps & IHandlers & ICounterState;
 
 // connector & enhancer
 const CounterProvider = compose<EnhancedProps, IProps>(
-  withStore,
+  store.withStore,
   withHandlers<IStore, IHandlers>({
     increment: ({ store }) => () => store.set('count')(store.get('count') + 1),
     decrement: ({ store }) => () => store.set('count')(store.get('count') - 1),
